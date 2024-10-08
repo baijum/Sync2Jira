@@ -960,7 +960,7 @@ def _update_github_project_fields(client, existing, issue, github_project_fields
     """
 
     for name, values in github_project_fields.items():
-        fieldvalue = str(getattr(issue, name))
+        fieldvalue = getattr(issue, name)
         if not fieldvalue:
             continue
         if name == 'storypoints':
