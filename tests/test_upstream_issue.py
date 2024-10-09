@@ -17,15 +17,16 @@ class TestUpstreamIssue(unittest.TestCase):
             'sync2jira': {
                 'map': {
                     'github': {
-                        'org/repo': {'sync': ['issue']},
+                        'org/repo': {'sync': ['issue'], 'github_project_fields': {}},
                     },
                 },
                 'jira': {
                     # Nothing, really..
                 },
+                'default_github_project_fields': {},
                 'filters': {
                     'github':
-                        {'org/repo': {'filter1': 'filter1', 'labels': 'custom_tag'}},
+                    {'org/repo': {'filter1': 'filter1', 'labels': 'custom_tag'}},
                 },
                 'github_token': 'mock_token'
             },
@@ -133,7 +134,8 @@ class TestUpstreamIssue(unittest.TestCase):
             {'labels': ['some_label'], 'number': '1234', 'comments': [
                 {'body': 'mock_body', 'name': unittest.mock.ANY, 'author': 'mock_username', 'changed': None,
                  'date_created': 'mock_created_at', 'id': 'mock_id'}], 'assignees': [{'fullname': 'mock_name'}],
-             'user': {'login': 'mock_login', 'fullname': 'mock_name'}, 'milestone': 'mock_milestone'},
+             'user': {'login': 'mock_login', 'fullname': 'mock_name'}, 'milestone': 'mock_milestone',
+             'storypoints': None, 'priority': ''},
             self.mock_config
         )
         self.mock_github_client.get_repo.assert_called_with('org/repo')
@@ -181,7 +183,8 @@ class TestUpstreamIssue(unittest.TestCase):
         mock_issue_from_github.assert_called_with(
             'org/repo',
             {'labels': ['some_label'], 'number': '1234', 'comments': [], 'assignees': [{'fullname': 'mock_name'}],
-             'user': {'login': 'mock_login', 'fullname': 'mock_name'}, 'milestone': 'mock_milestone'},
+             'user': {'login': 'mock_login', 'fullname': 'mock_name'}, 'milestone': 'mock_milestone',
+             'storypoints': None, 'priority': ''},
             self.mock_config
         )
         self.assertEqual(response[0], 'Successful Call!')

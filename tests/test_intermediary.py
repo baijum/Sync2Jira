@@ -1,5 +1,5 @@
-import mock
 import unittest
+import unittest.mock as mock
 
 import sync2jira.intermediary as i
 
@@ -35,6 +35,7 @@ class TestIntermediary(unittest.TestCase):
             'labels': 'mock_tags',
             'milestone': 'mock_milestone',
             'priority': 'mock_priority',
+            'storypoints': '1.0',
             'body': 'mock_content',
             'user': 'mock_reporter',
             'assignees': 'mock_assignee',
@@ -85,7 +86,7 @@ class TestIntermediary(unittest.TestCase):
                                               'changed': None, 'date_created': 'mock_date', 'id': 'mock_id'}])
         self.assertEqual(response.tags, 'mock_tags')
         self.assertEqual(response.fixVersion, ['mock_milestone'])
-        self.assertEqual(response.priority, None)
+        self.assertEqual(response.priority, 'mock_priority')
         self.assertEqual(response.content, 'mock_content')
         self.assertEqual(response.reporter, 'mock_reporter')
         self.assertEqual(response.assignee, 'mock_assignee')
@@ -116,7 +117,7 @@ class TestIntermediary(unittest.TestCase):
                                               'changed': None, 'date_created': 'mock_date', 'id': 'mock_id'}])
         self.assertEqual(response.tags, 'mock_tags')
         self.assertEqual(response.fixVersion, ['mock_milestone'])
-        self.assertEqual(response.priority, None)
+        self.assertEqual(response.priority, 'mock_priority')
         self.assertEqual(response.content, 'mock_content')
         self.assertEqual(response.reporter, 'mock_reporter')
         self.assertEqual(response.assignee, 'mock_assignee')
@@ -151,7 +152,7 @@ class TestIntermediary(unittest.TestCase):
                                               'changed': None, 'date_created': 'mock_date', 'id': 'mock_id'}])
         self.assertEqual(response.tags, 'mock_tags')
         self.assertEqual(response.fixVersion, ['Test mock_milestone'])
-        self.assertEqual(response.priority, None)
+        self.assertEqual(response.priority, 'mock_priority')
         self.assertEqual(response.content, 'mock_content')
         self.assertEqual(response.reporter, 'mock_reporter')
         self.assertEqual(response.assignee, 'mock_assignee')
